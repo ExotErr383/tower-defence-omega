@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
@@ -23,7 +22,8 @@ public class WaveManager : MonoBehaviour
             countdown = timeBetweenWaves;
         }
         countdown -= Time.deltaTime;
-        waveCountdownText.text = Mathf.Ceil(countdown).ToString();
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        waveCountdownText.text = $"{countdown:00.00}";
     }
     IEnumerator SpawnWave()
     {
