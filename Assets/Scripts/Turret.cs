@@ -17,12 +17,12 @@ public class Turret : MonoBehaviour
 
     private float fireCountdown = 0f;
     private Transform target;
-    void Start()
+    private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
-    void Update()
+    private void Update()
     {
         if (target == null)
             return;
@@ -40,7 +40,7 @@ public class Turret : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    void Shoot()
+    private void Shoot()
     {
         GameObject BulletOBJ = (GameObject)Instantiate(bulletPref, firePoint.position, pivotPoint.rotation);
         Bullet bullet = BulletOBJ.GetComponent<Bullet>();
@@ -48,7 +48,7 @@ public class Turret : MonoBehaviour
             bullet.Seek(target);
     }
 
-    void UpdateTarget()
+    private void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestDistance = Mathf.Infinity;
@@ -73,7 +73,7 @@ public class Turret : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);

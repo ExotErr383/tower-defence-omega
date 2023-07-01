@@ -15,7 +15,7 @@ public class WaveManager : MonoBehaviour
 
     private int waveNumber = 0;
 
-    void Update()
+    private void Update()
     {
         if (countdown <= 0)
         {
@@ -36,7 +36,7 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-    void SpawnEnemy()
+    private void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }

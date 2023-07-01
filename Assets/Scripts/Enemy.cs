@@ -7,12 +7,12 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private int wavepointIndex = 0;
 
-    void Start()
+    private void Start()
     {
         target = Waypoints.points[0];
     }
 
-    void Update()
+    private void Update()
     {
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime);
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
             GetNextWaypoint();
         }
     }
-    void GetNextWaypoint()
+    private void GetNextWaypoint()
     {
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {

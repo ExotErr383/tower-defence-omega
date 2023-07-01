@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
         target = _target;
     }
 
-    void Update()
+    private void Update()
     {
         if (target == null)
         {
@@ -28,10 +28,10 @@ public class Bullet : MonoBehaviour
         transform.Translate(dir.normalized * distance, Space.World);
     }
 
-    void HitTarget()
+    private void HitTarget()
     {
         GameObject EffectInst = (GameObject)Instantiate(ImpactEffect, transform.position, transform.rotation);
-        Destroy(EffectInst, 2f);
+        Destroy(EffectInst, 1f);
         Destroy(gameObject);
     }
 }
