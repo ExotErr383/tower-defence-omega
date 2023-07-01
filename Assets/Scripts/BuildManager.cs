@@ -10,17 +10,19 @@ public class BuildManager : MonoBehaviour
     }
 
     public GameObject standartTurretPreafab;
-    public GameObject anotherTurretPreafab;
+    public GameObject missileTurretPreafab;
 
-    private GameObject turretToBuild;
+    private TurretBlueprint turretToBuild;
+    public bool CanBuild { get { return turretToBuild != null; } }
 
-    public GameObject GetTurretToBuild()
-    {
-        return turretToBuild;
-    }
-
-    public void SetTurretToBuild(GameObject turret)
+    public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+    }
+
+    public void BuildTurretOn(TurretPlatform platform)
+    {
+        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, platform.GetBuildPosition(), Quaternion.identity);
+        platform.turret = turret;
     }
 }

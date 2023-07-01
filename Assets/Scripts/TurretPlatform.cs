@@ -6,7 +6,9 @@ public class TurretPlatform : MonoBehaviour
     public Color hoverColor;
     public Vector3 positionOffset;
 
-    private GameObject turret;
+    [Header("Optional")]
+    public GameObject turret;
+
     private Renderer rend;
     private Color startColor;
 
@@ -24,7 +26,7 @@ public class TurretPlatform : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.CanBuild)
             return;
         
         rend.material.color = hoverColor;
@@ -40,7 +42,7 @@ public class TurretPlatform : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (buildManager.GetTurretToBuild() == null)
+        if (!buildManager.CanBuild)
             return;
 
         if (turret != null)
@@ -49,7 +51,10 @@ public class TurretPlatform : MonoBehaviour
             return;
         }
 
-        GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+        buildManager.BuildTurretOn(this);
+    }
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position + positionOffset;
     }
 }
