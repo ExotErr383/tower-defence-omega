@@ -3,7 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 7f;
     private Transform target;
     private int wavepointIndex = 0;
 
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
             Destroy(gameObject);
-            return;
+            return; 
         }
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
