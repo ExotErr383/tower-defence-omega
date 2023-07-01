@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TurretPlatform : MonoBehaviour
 {
@@ -9,14 +10,23 @@ public class TurretPlatform : MonoBehaviour
     private Renderer rend;
     private Color startColor;
 
+    BuildManager buildManager;
+
     private void Start()
     {
+        buildManager = BuildManager.instance;
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
     }
 
     private void OnMouseEnter()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (buildManager.GetTurretToBuild() == null)
+            return;
+        
         rend.material.color = hoverColor;
     }
 
@@ -27,6 +37,12 @@ public class TurretPlatform : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (buildManager.GetTurretToBuild() == null)
+            return;
+
         if (turret != null)
         {
             Debug.Log("Can't build! TODO: Display that info on screen");
