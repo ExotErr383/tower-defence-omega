@@ -19,7 +19,8 @@ public class WaveManager : MonoBehaviour
         if (countdown <= 0)
         {
             StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            countdown = timeBetweenWaves + 0.2f * waveNumber;
+            Debug.Log(countdown.ToString());
         }
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);

@@ -27,8 +27,6 @@ public class Bullet : MonoBehaviour
             HitTarget();
             return;
         }
-        //Quaternion lookRotation = Quaternion.LookRotation(dir);
-        //transform.rotation = lookRotation;
         transform.Translate(dir.normalized * distance, Space.World);
         transform.LookAt(target);
     }
