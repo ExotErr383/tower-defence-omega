@@ -4,6 +4,9 @@ using UnityEngine.Rendering.Universal;
 public class Enemy : MonoBehaviour
 {
     public float speed = 7f;
+    public int health = 20;
+    public int value = 10;
+
     private Transform target;
     private int wavepointIndex = 0;
 
@@ -26,10 +29,29 @@ public class Enemy : MonoBehaviour
     {
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            EndPath();
             return; 
         }
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    private void EndPath()
+    {
+        PlayerStats.Lives--;
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        PlayerStats.Money += value;
+        Destroy(gameObject);
     }
 }
