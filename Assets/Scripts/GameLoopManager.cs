@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class GameLoopManager : MonoBehaviour
 {
-    private bool gameEnded = false;
+    public GameObject gameOverUI;
+
+    public static bool gameEnded;
+
+    private void Start()
+    {
+        gameEnded = false;
+    }
+
     private void Update()
     {
         if (gameEnded) return;
@@ -15,6 +23,6 @@ public class GameLoopManager : MonoBehaviour
     private void EndGame()
     {
         gameEnded = true;
-        Debug.Log("Game Ended");
+        gameOverUI.SetActive(true);
     }
 }
