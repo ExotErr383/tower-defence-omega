@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public TextMeshProUGUI wavesText;
+    public string mainMenuScene = "MainMenu";
 
     private void OnEnable()
     {
@@ -18,6 +19,6 @@ public class GameOver : MonoBehaviour
 
     public void MainMenu()
     {
-        Debug.Log("Go to menu");
+        SceneManager.LoadScene(mainMenuScene);
     }
 }

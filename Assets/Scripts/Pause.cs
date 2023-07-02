@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
     public GameObject pauseUI;
+    public string mainMenuScene = "MainMenu";
 
     private void Update()
     {
@@ -36,6 +37,6 @@ public class Pause : MonoBehaviour
 
     public void MainMenu()
     {
-        Debug.Log("Go to menu");
+        SceneManager.LoadScene(mainMenuScene);
     }
 }
