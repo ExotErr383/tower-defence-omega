@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 7f;
     public float startHealth = 30f;
-    public int value = 10;
+    public int value = 2;
 
     [Header("Unity attributes")]
     public Image healthBar;
